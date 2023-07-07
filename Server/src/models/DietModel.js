@@ -3,8 +3,10 @@ const {DataTypes} = require("sequelize");
 module.exports = (sequelize) => {
     sequelize.define("Diet", {
         id: {
+            
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         title: {
             type: DataTypes.STRING,

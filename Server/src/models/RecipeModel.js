@@ -13,6 +13,11 @@ module.exports = (sequelize) => {
             unique: true,
             allowNull: false
         },
+        //!HsCORE DEBERIA TENER UN MIN Y MAX VALUE?
+        healthScore: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         image: {
             type: DataTypes.STRING,
         },
@@ -20,15 +25,15 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        //!HsCORE DEBERIA SER INT U OTRA COSA? Y DEBERIA TENER UN MIN Y MAX VALUE?
-        score: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        },
         // !ES INSTRUCTIONS O DEBERIA SER ANALYZEDiNSTRUCTIONS?
-        instructions: {
-            type: DataTypes.TEXT
+        steps: {
+            type: DataTypes.JSON,
+            allowNull: false
         }
+        // instructions: {
+        //     type: DataTypes.TEXT
+        //     allowNull: false
+        // }
     },
     {timestamps: false}
     );
