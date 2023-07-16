@@ -11,7 +11,8 @@ const getByIdApi = async(id) => {
     console.log("Recipe data successfully fetched from API");
     
     const formattedRecipe = formatRecipes([data])[0];
-    return formattedRecipe;
+    if (formattedRecipe) return formattedRecipe;
+    return "Recipe not found in API";
 }
 
 module.exports = getByIdApi;

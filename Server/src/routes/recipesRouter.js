@@ -1,13 +1,13 @@
 const {Router} = require("express");
 const {getByIdHandler, 
-    getByNameHandler, 
+    getRecipesHandler, 
     postRecipeHandler} = require("../handlers/recipeHandler");
 
 const recipesRouter = Router();
 
 recipesRouter.get("/:idRecipe", getByIdHandler);
 
-recipesRouter.get("/", getByNameHandler);
+recipesRouter.get("/", getRecipesHandler);
 
 recipesRouter.post("/", postRecipeHandler);
 

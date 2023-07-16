@@ -1,27 +1,12 @@
-require("dotenv").config();
-const axios = require("axios");
 const {Diet} = require("../db");
-const formatRecipes = require("../utils/formatRecipes");
+const getRecipes = require("../helpers/getRecipes");
 
 
-const getRecipesSeed = async() => {
-    // Busco 100 recetas en la API
-    const {API_KEY} = process.env;
-    const endpoint = `https://api.spoonacular.com/recipes/complexSearch?number=100&addRecipeInformation=true&apiKey=${API_KEY}`;
-    const {data} = await axios(endpoint);
 
-    // Si se trajeron con exito, las mapeo y formateo usando mi utils function
-    if (data.results) {
-        const formattedRecipes = formatRecipes(data.results);
-
-        // Las devuelvo en forma de arreglo
-        return formattedRecipes;
-    }
-    throw Error("Failed to fetch and format initial recipes");
-};
-
-
-const getDietsSeed = async(recipes) => {
+const getDietsSeed = async() => {
+    // Llamo al helper que obtiene 100 recetas de la API
+    const recipes = await getRecipes();
+    if(recipes.length) console.log("Recipes fetched from API")
     // Recorro el arreglo de recetas para tomar el atributo "diets" de cada una
     recipes.forEach((recipe) => {
         const recipeDiets = recipe.diets;
@@ -36,11 +21,10 @@ const getDietsSeed = async(recipes) => {
         })
     })
     // Devuelvo un mensaje de exito
-    return console.log("Diets loaded into Database");
+    return "Diets loaded into Database";
 }
 
 
 module.exports = {
-    getRecipesSeed,
     getDietsSeed
 };

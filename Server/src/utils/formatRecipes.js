@@ -1,5 +1,5 @@
 
-const formatRecipes = (recipes) => {
+const formatRecipesApi = (recipes) => {
     // Elijo las propiedades de la receta que a mi me interesan
     const propertiesToCheck = ["title", "healthScore", "image", "summary", 
     "analyzedInstructions", "diets", "vegetarian", "vegan", "glutenFree"];
@@ -30,6 +30,14 @@ const formatRecipes = (recipes) => {
         };
     });
     return formattedRecipes;
-}
+};
 
-module.exports = formatRecipes;
+
+// const formatRecipesDb = (recipes) => {
+
+// }
+
+module.exports = {
+    formatRecipesApi,
+
+};

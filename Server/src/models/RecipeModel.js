@@ -1,11 +1,12 @@
-const {DataTypes} = require("sequelize");
+const { DataTypes } = require("sequelize");
+const { v4: uuidv4 } = require("uuid");
 
 
 module.exports = (sequelize) => {
     sequelize.define("Recipe", {
         id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
+            type: DataTypes.UUID,
+            defaultValue: () => uuidv4(),
             primaryKey: true
         },
         title: {
@@ -25,15 +26,10 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        // !ES INSTRUCTIONS O DEBERIA SER ANALYZEDiNSTRUCTIONS?
         steps: {
             type: DataTypes.JSON,
             allowNull: false
         }
-        // instructions: {
-        //     type: DataTypes.TEXT
-        //     allowNull: false
-        // }
     },
     {timestamps: false}
     );

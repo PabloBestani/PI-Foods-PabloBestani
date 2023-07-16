@@ -1,18 +1,25 @@
-require('dotenv').config();
 const getByIdApi = require("./recipeControllers/getByIdApi");
 const getByIdDb = require("./recipeControllers/getByIdDb");
 const getByNameApi = require("./recipeControllers/getByNameApi");
 const getByNameDb = require("./recipeControllers/getByNameDb");
 const getDiets = require("./dietControllers/getDiets");
 const createRecipe = require("./recipeControllers/createRecipe");
+const validateId = require("../utils/validateId");
 
-
+//! CHEQUEAR LO DE UUID para validar que es lo que recibo por parametro, asi se donde buscarlo
 const getRecipeById = async(id) => {
-    const dbRecipe = await getByIdDb(id);
-    if (dbRecipe) return dbRecipe;
-    
-    const apiRecipe = await getByIdApi(id);
-    if (apiRecipe) return apiRecipe;
+        const idType = validateId(id);
+        if(idType === 'number') {
+            const apiRecipe = await getByIdApi(id);
+            if (apiRecipe) return apiRecipe;
+            throw Error ("API recipe not recieved at controllers/index.js");
+        }
+        if (idType === 'uuid') {
+            const dbRecipe = await getByIdDb(id);
+            if (dbRecipe) return dbRecipe;
+            throw Error ("Database recipe not recieved at controllers/index.js");
+        }
+        throw Error ("Invalid id");
 }
 
 

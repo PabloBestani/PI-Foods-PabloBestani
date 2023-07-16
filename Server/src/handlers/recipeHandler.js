@@ -1,9 +1,27 @@
 const {
     getRecipeById, 
     getRecipeByName,
-    postRecipe} = require("../controllers/index");
+    postRecipe
+} = require("../controllers/index");
+const getRecipes = require("../helpers/getRecipes");
 
 
+
+const getRecipesHandler = async(req, res) => {
+    try {
+        const {name} = req.query;
+        let response = [];
+        if(!name) {
+            response = await getRecipes();
+            return res.status(200).json(response);
+        };
+        
+        response = await getRecipeByName(name);
+        return res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    };
+}
 
 const getByIdHandler = async(req, res) => {
     try {
@@ -18,17 +36,7 @@ const getByIdHandler = async(req, res) => {
 }
 
 
-const getByNameHandler = async(req, res) => {
-    try {
-        const {name} = req.query;
-        if(!name) return res.status(400).send("Missing name search parameter");
-        const response = await getRecipeByName(name);
 
-        res.status(200).json(response);
-    } catch (error) {
-        res.status(400).json({error: error.message});
-    };
-}
 
 
 const postRecipeHandler = async(req, res) => {
@@ -46,6 +54,6 @@ const postRecipeHandler = async(req, res) => {
 
 module.exports = {
     getByIdHandler,
-    getByNameHandler,
+    getRecipesHandler,
     postRecipeHandler
 };
