@@ -1,18 +1,18 @@
+import { useSelector } from "react-redux";
 import Grid from "../../components/grid/Grid";
 import Filter from "../../components/filter/Filter";
+import Order from "../../components/order/Order";
 import Pagination from "../../components/pagination/Pagination";
 import styles from './home.module.css';
 import usePaginate from '../../hooks/usePaginate';
 
 function Home() {
-    //! SACAR EVENTUALMENTE los indices, no hacen falta
+    const showFilters = useSelector((state) => state.showFilters);
     const { 
         previousPage, 
         nextPage, 
         visibleRecipes, 
-        maxPages, 
-        startIndex, 
-        endIndex
+        maxPages
     } = usePaginate(9);
 
 
@@ -23,10 +23,11 @@ function Home() {
                 previousPage={previousPage}
                 nextPage={nextPage}
                 maxPages={maxPages}
-                startIndex={startIndex}
-                endIndex={endIndex}
             />
-            <Filter />
+            <Order />
+            {
+                showFilters && <Filter />
+            }
             <Grid visibleRecipes={visibleRecipes}/>
         </div>
     );

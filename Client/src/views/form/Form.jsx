@@ -6,10 +6,13 @@ import styles from "./form.module.css";
 function Form() {
     const allDiets = useSelector((state) => state.allDiets);
     const {
+        errors,
+        recipe,
+        currSteps,
+        checkedDiets,
         submitHandler, 
         recipeChangeHandler, 
         dietChangeHandler,
-        currSteps,
         addSteps,
         stepsOnChange
     } = useForm();
@@ -21,25 +24,36 @@ function Form() {
 
             <form className={styles.form} onSubmit={submitHandler}>
                 <label>Recipe name</label>
-                <input type="text" name="title" onChange={recipeChangeHandler}/>
+                <input type="text" name="title" value={recipe.title} onChange={recipeChangeHandler}/>
+                {errors.title && <p>{errors.title}</p>}
+                
 
                 <label>Summary</label>
-                <input type="text" name="summary" onChange={recipeChangeHandler}/>
+                <input type="text" name="summary" value={recipe.summary} onChange={recipeChangeHandler}/>
+                {errors.summary && <p>{errors.summary}</p>}
                 
                 <label>Health Score</label>
-                <input type="number" name="healthScore" onChange={recipeChangeHandler}/>
+                <input type="number" name="healthScore" value={recipe.healthScore} onChange={recipeChangeHandler}/>
+                {errors.healthScore && <p>{errors.healthScore}</p>}
 
+
+                {/* //* STEPS */}
                 <label>Instructions</label>
                 {
                     Object.keys(currSteps)?.map((step, index) => {
-                        return <input key={index} type="text" name={step} onChange={stepsOnChange} />
+                        return <input key={index} type="text" value={currSteps[step]} name={step} onChange={stepsOnChange} />
                     })
                 }
                 <button type="button" onClick={addSteps}>Add instruction</button>
+                {errors.steps && <p>{errors.steps}</p>}
 
+
+                {/* //* IMAGE */}
                 <label>Image URL</label>
-                <input type="text" name="image" placeholder="insert URL"  onChange={recipeChangeHandler}/>
+                <input type="text" name="image" value={recipe.image} placeholder="insert URL"  onChange={recipeChangeHandler}/>
 
+                
+                {/* //* DIETS */}
                 <div className={styles.dietList}>
                     <label>Associated diets</label>
                         {
@@ -51,6 +65,7 @@ function Form() {
                                             type="checkbox"
                                             name="diets"
                                             value={diet}
+                                            checked={checkedDiets[diet]}
                                             onChange={dietChangeHandler}
                                          />
                                         <label>{diet}</label>
@@ -59,7 +74,7 @@ function Form() {
                             })
                         }
                 </div>
-                <button type="submit">Create Recipe</button>
+                <button type="submit" disabled={Object.keys(errors).length}>Create Recipe</button>
             </form>
         </div>
     );
