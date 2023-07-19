@@ -1,12 +1,12 @@
 const {Recipe, Diet} = require("../../db");
 const {Op} = require("sequelize");
+const {formatRecipesDb} = require("../../utils/formatRecipes");
 
 
 
 const createRecipe = async(recipe) => {
     // Desestructuro las propiedades que recibi para la receta, y chequeo que todas esten
     const {title, image, summary, healthScore, steps, diets} = recipe;
-    console.log(recipe);
     if(title && image && summary && healthScore && steps && diets) {
 
         // Busco la receta en la DB, y si no existe la creo
@@ -31,8 +31,11 @@ const createRecipe = async(recipe) => {
         // Asocio todas las dietas a la receta que cree
         await newRecipe.addDiets(dietas);
 
-        // Retorno la nueva receta con sus dietas asociadas
-        return {Recipe: newRecipe, Diets: dietas};
+        // Retorno la nueva receta, formateada y con sus dietas asociadas
+        let output = await Recipe.findByPk(newRecipe.id, {include: [Diet]});
+        console.log(output);
+        const formattedOutput = formatRecipesDb([output])[0];
+        return formattedOutput;
     };
 };
 

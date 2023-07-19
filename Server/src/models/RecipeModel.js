@@ -14,13 +14,18 @@ module.exports = (sequelize) => {
             unique: true,
             allowNull: false
         },
-        //!HsCORE DEBERIA TENER UN MIN Y MAX VALUE?
         healthScore: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            // validate: {
+            //     min: 0,
+            //     max: 100,
+            //     step: 1
+            // }
         },
         image: {
             type: DataTypes.STRING,
+            allowNull: false
         },
         summary: {
             type: DataTypes.TEXT,

@@ -1,12 +1,12 @@
 const {Diet} = require("../db");
-const getRecipes = require("../helpers/getRecipes");
+const getAllRecipes = require("../helpers/getAllRecipes");
 
 
 
 const getDietsSeed = async() => {
     // Llamo al helper que obtiene 100 recetas de la API
-    const recipes = await getRecipes();
-    if(recipes.length) console.log("Recipes fetched from API")
+    const recipes = await getAllRecipes();
+    if(recipes.length) console.log("Recipes fetched from API");
     // Recorro el arreglo de recetas para tomar el atributo "diets" de cada una
     recipes.forEach((recipe) => {
         const recipeDiets = recipe.diets;
@@ -16,7 +16,6 @@ const getDietsSeed = async() => {
                 where: {title: diet},
                 defaults: {title: diet}
             })
-            // console.log(dieta);
             return dieta;
         })
     })

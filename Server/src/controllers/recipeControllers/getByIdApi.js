@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-const formatRecipes = require("../../utils/formatRecipes");
+const {formatRecipesApi} = require("../../utils/formatRecipes");
 
 const getByIdApi = async(id) => {
     // Busco la receta en la API, segun el id que me mandaron.
@@ -10,7 +10,7 @@ const getByIdApi = async(id) => {
     if (!data) throw Error("Error trying to fetch from API");
     console.log("Recipe data successfully fetched from API");
     
-    const formattedRecipe = formatRecipes([data])[0];
+    const formattedRecipe = formatRecipesApi([data])[0];
     if (formattedRecipe) return formattedRecipe;
     return "Recipe not found in API";
 }

@@ -3,7 +3,7 @@ const {
     getRecipeByName,
     postRecipe
 } = require("../controllers/index");
-const getRecipes = require("../helpers/getRecipes");
+const getAllRecipes = require("../helpers/getAllRecipes");
 
 
 
@@ -12,7 +12,7 @@ const getRecipesHandler = async(req, res) => {
         const {name} = req.query;
         let response = [];
         if(!name) {
-            response = await getRecipes();
+            response = await getAllRecipes();
             return res.status(200).json(response);
         };
         
@@ -21,7 +21,9 @@ const getRecipesHandler = async(req, res) => {
     } catch (error) {
         res.status(400).json({error: error.message});
     };
-}
+};
+
+
 
 const getByIdHandler = async(req, res) => {
     try {
@@ -32,8 +34,8 @@ const getByIdHandler = async(req, res) => {
         res.status(200).json(response);
     } catch (error) {
         res.status(400).json({error: error.message});
-    }
-}
+    };
+};
 
 
 
@@ -47,8 +49,8 @@ const postRecipeHandler = async(req, res) => {
         return res.status(200).json(recipe);
     } catch (error) {
         res.status(400).json({error: error.message});
-    }
-}
+    };
+};
 
 
 

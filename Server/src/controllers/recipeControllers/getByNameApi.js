@@ -1,6 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
-const formatRecipes = require("../../utils/formatRecipes");
+const {formatRecipesApi} = require("../../utils/formatRecipes");
 
 
 const getByNameApi = async(name) => {
@@ -9,12 +9,16 @@ const getByNameApi = async(name) => {
     const endpoint = `https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&apiKey=${API_KEY}`;
 
     let {results} = (await axios(endpoint)).data;
-    if (!results) throw Error("Error trying to fetch from API");
+    if (!results) throw Error("Error trying to fetch from API (at getByNameApi)");
+    if (!results.length) {
+        console.log("No recipes found in API with given name");
+        return [];
+    }
     console.log("Recipe data successfully fetched from API");
 
     // Llamo a mi utils que formatea recetas como las necesito
-    const formattedRecipes = formatRecipes(results);
-    if(!formattedRecipes.length) throw Error("Error formatting recipes")
+    const formattedRecipes = formatRecipesApi(results);
+    if(!formattedRecipes.length) throw Error("Error formatting recipes (at getByNameApi)")
     
     // Retorno el arreglo de recetas validadas y formateadas
     return formattedRecipes;
