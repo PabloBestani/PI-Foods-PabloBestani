@@ -50,9 +50,7 @@ export default function usePaginate (gridContent) {
         previousPage,
         nextPage,
         visibleRecipes,
-        maxPages,
-        startIndex, 
-        endIndex
+        maxPages
     }
 }
 

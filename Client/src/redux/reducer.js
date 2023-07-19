@@ -2,6 +2,7 @@ import {
     SET_ALL_RECIPES, 
     SET_ALL_DIETS,
     SET_RECIPES_BY_NAME, 
+    RESET_SEARCH_RECIPES,
     INCREASE_PAGE, 
     DECREASE_PAGE, 
     RESET_PAGE, 
@@ -21,9 +22,9 @@ let initialState = {
         chosenOrigin: 'All',
         chosenDiets: [],
     },
-    chosenOrder: 'Select order',
-    byName: [],
     filteredRecipes: [],
+    chosenOrder: 'Select order',
+    showFilters: true,
     currPage: 1
 }
 
@@ -41,12 +42,27 @@ const rootReducer = (state = initialState, {type, payload}) => {
                 allDiets: payload
             };
         case SET_RECIPES_BY_NAME:
+            if (!payload.length) {
+                window.alert("No recipes found");
+                return state;
+            }
             return {
                 ...state,
-                // byName: payload,
-                // filteredByOrigin: payload,
-                // combinedFiltered: payload
+                filteredRecipes: payload,
+                showFilters: false,
+                currPage: 1
             };
+        case RESET_SEARCH_RECIPES:
+            return {
+                ...state,
+                activeFilters: {
+                    chosenOrigin: 'All',
+                    chosenDiets: [],
+                },
+                filteredRecipes: state.allRecipes,
+                showFilters: true,
+                currPage: 1
+            }
         case INCREASE_PAGE:
             return {
                 ...state,

@@ -1,3 +1,18 @@
+import { getAllDiets } from "./apiUtils";
+
+
+export async function listAllDiets() {
+    const allDiets = await getAllDiets()
+    .then((diets) => diets.map((diet) => {
+        return diet.title;
+    }))
+    .then((diets) => {
+        return diets;
+    })
+    .catch((error) => error.message);
+    return allDiets;
+};
+
 
 
 export function validateOrigin(recipe) {

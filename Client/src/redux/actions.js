@@ -1,8 +1,10 @@
-import { getAllRecipes, getRecipeByName, postRecipe } from '../utils/apiUtils';
-import listAllDiets from '../utils/listAllDiets';
+import * as utils from '../utils/apiUtils';
+import { listAllDiets } from '../utils/reduxUtils';
+
 export const SET_ALL_RECIPES = 'SET_ALL_RECIPES';
 export const SET_ALL_DIETS = 'SET_ALL_DIETS';
 export const SET_RECIPES_BY_NAME = 'SET_RECIPES_BY_NAME';
+export const RESET_SEARCH_RECIPES = 'RESET_SEARCH_RECIPES';
 export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const INCREASE_PAGE = 'INCREASE_PAGE';
 export const DECREASE_PAGE = 'DECREASE_PAGE';
@@ -17,7 +19,7 @@ export const ORDER_RECIPES = 'ORDER_RECIPES';
 export function setAllRecipes() {
     return async(dispatch) => {
         try {
-            const recipes = await getAllRecipes();
+            const recipes = await utils.getAllRecipes();
             return dispatch({
                 type: SET_ALL_RECIPES,
                 payload: recipes
@@ -45,7 +47,7 @@ export function setAllDiets() {
 export function setRecipesByName(name) {
     return async(dispatch) => {
         try {
-            const recipes = await getRecipeByName(name);
+            const recipes = await utils.getRecipeByName(name);
             return dispatch({
                 type: SET_RECIPES_BY_NAME,
                 payload: recipes
@@ -53,6 +55,12 @@ export function setRecipesByName(name) {
         } catch (error) {
             throw Error(error.message);
         };
+    }
+}
+
+export function resetSearchRecipes() {
+    return {
+        type: RESET_SEARCH_RECIPES,
     }
 }
 
@@ -96,8 +104,7 @@ export function resetFilters() {
 export function createRecipe(recipe) {
     return async(dispatch) => {
         try {
-            const response = await postRecipe(recipe);
-            //!LLAMAR a una util de formateo de receta
+            const response = await utils.postRecipe(recipe);
             return dispatch({
                 type: CREATE_RECIPE,
                 payload: response
