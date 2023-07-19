@@ -1,0 +1,26 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../../assets/fondo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container h1 {
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 10%;
+}
+
+
+.container button {
+    position: absolute;
+    /* transform: translateX(-50%); */
+    transform: translateY(-50%);
+    left: 46%;
+    top: 40%;
+    width: 8vw;
+}
+    

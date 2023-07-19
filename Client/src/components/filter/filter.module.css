@@ -1,0 +1,19 @@
+.container {
+
+}
+
+.singleCheckbox {
+    margin: 5px 0 5px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 5px 10px;
+}
+
+.singleCheckbox input {
+    display: flex;
+    padding-right: 0;
+}
+
+.singleCheckbox label {
+    display: flex;
+}

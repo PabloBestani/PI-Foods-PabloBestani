@@ -8,8 +8,8 @@ export default function Pagination(props) {
 
     return (
         <div>
+            <p><b>Page {page}/{maxPages}</b></p>
             <button name="previous" onClick={previousPage}>Previous</button>
-            <span>{page}/{maxPages}</span>
             <button name="next" onClick={nextPage}>Next</button>
         </div>
     );

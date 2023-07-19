@@ -16,7 +16,7 @@ export default function usePaginate (gridContent) {
     useEffect(() => {
         setStartIndex((page - 1) * gridContent);
         setEndIndex(page * gridContent);
-    }, [page])
+    }, [page, recipes])
     
     
     useEffect(() => {

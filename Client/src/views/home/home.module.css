@@ -1,3 +1,28 @@
 .container {
-    align-items: center;
+    display: flex;
+    /* overflow: hidden; */
+
 }
+
+.sideBar {
+    /* border: 3px solid rgb(16, 119, 119); */
+    /* border-radius: 20px; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    border-right: 3px solid rgba(110, 88, 68, 0.996);
+    background-color: rgba(219, 175, 137, 0.996);
+    gap: 10px;
+    height: 90.6vh;
+    bottom: 8px;
+    width: 15%;
+    padding-top: 25px;
+}
+
+.gridContainer {
+    width: 90vw;
+    height: 90vh;
+    margin-top: 10px;
+}
+

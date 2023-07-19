@@ -6,36 +6,53 @@ import styles from './card.module.css';
 function Card({recipe, detail}) {
     const {id, title, image, diets, healthScore, summary, steps} = recipe;
     const cleanSummary = formatTextDetail(summary);
-    const cleanDiets = diets.join(', ');
 
     
     return (
-        <div className={styles.container} >
-            <h3>Card</h3>
-            <span>{title}</span>
-            <img src={image} alt={title} />
-            <p>Diets: {cleanDiets}</p>
-            {
-                !detail &&
-                    <Link to={`/detail/${id}`}>
-                        <button>View</button>
-                    </Link>
+        <div className={detail && styles.detailContainer}>
+            {detail && <h2>{title}</h2>}
+            <div className={detail && styles.triptychContainer}>
+                <div className={detail ? styles.detailCardLeft : styles.container}>
+                    <div className={!detail && styles.cardLeft}>
+                        <img src={image} alt={title} />
+                        {!detail && <span><b>{title}</b></span>}
+                    </div>
 
-            }
-            {
-                detail && 
-                    <div>
-                        <span>Health Score: {healthScore}</span>
-                        <p>{cleanSummary}</p>
+                    <div className={!detail && styles.cardRight}>
+                        <div className={detail ? styles.detailDiets : styles.diets}>
+                            <h4><b>Diets:</b></h4>
+                            {
+                                diets?.map((diet, index) => <p key={index}>{diet}</p>)
+                            }
+                        </div>
+
                         {
-                            steps?.map((step) => {
-                                return <p key={step.number}>
-                                    Step {step.number}: {step.step}
-                                </p>
-                            })
+                            !detail &&
+                            <Link to={`/detail/${id}`}>
+                                    <button>View</button>
+                                </Link>
                         }
                     </div>
-            }
+                </div>
+                {
+                    detail && 
+                        <>
+                            <div className={styles.detailCardCenter}>
+                                <h3>Health Score: {healthScore}</h3>
+                                <p>{cleanSummary}</p>
+                            </div>
+                            <div className={styles.detailCardRight}>
+                                {
+                                    steps?.map((step) => {
+                                        return <p key={step.number}>
+                                            <b>Step {step.number}:</b> {step.step}
+                                        </p>
+                                    })
+                                }
+                            </div>
+                        </>
+                }
+            </div>
         </div>
     );
 };

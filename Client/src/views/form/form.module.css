@@ -8,19 +8,79 @@
 .form {
     display: flex;
     flex-direction: column;
+    /* align-content: center; */
     width: 20vw;
 }
 
-.dietList {
-    
+.form button {
+    border: 1px solid #0a4758;
+    height: 23px;
+    width: 85%;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px #116e87ae;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    margin-top: 10px;
 }
 
-.dietContainer {
+.form label {
+    font-weight: bold;
+}
+
+.textInputs {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
+
+.textInputs input {
+    border: 1px solid #0a4758;
+    height: 23px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px #116e87ae;
+    margin-bottom: 5px;
+}
+
+.textInputs p {
+    font-size: small;
+    color: #e22121;
+    margin-top: 0;
+}
+
+.dietList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dietList label {
+    margin-bottom: 5px;
+}
+
+/* .dietContainer {
     display: flex;
     justify-content: left;
+    width: 100%;
 }
 
-/* .checkbox {
-    display: flex;
-    flex-direction: row;
+.dietContainer p {
+    margin: 0;
 } */
+
+.singleCheckbox {
+    margin: 5px 0 5px;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    margin: 0px 10px;
+}
+
+.singleCheckbox input {
+    display: flex;
+}
+
+.singleCheckbox p {
+    display: flex;
+    font-weight: normal;
+    margin: 0;
+}

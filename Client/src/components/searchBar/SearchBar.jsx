@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../redux/actions';
+import styles from './searchBar.module.css';
 
 
 function SearchBar() {
@@ -21,8 +22,7 @@ function SearchBar() {
     }
 
     return (
-        <div>
-            <h3>SearchBar</h3>
+        <div className={styles.container}>
             <input 
                 type="text" 
                 name="input" 

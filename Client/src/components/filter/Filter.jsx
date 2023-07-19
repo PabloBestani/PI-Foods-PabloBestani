@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import useFilter from '../../hooks/useFilter';
+import styles from './filter.module.css'
 
 export default function Filter() {
     const allDiets = useSelector((state) => state.allDiets);
@@ -14,7 +15,7 @@ export default function Filter() {
 
 
     return (
-        <div>
+        <div className={styles.container}>
             <select value={chosenOrigin} onChange={handleOriginChange}>
                 {
                     originOptions.map((option, index) => {
@@ -22,19 +23,21 @@ export default function Filter() {
                     })
                 }
             </select>
-            {
-                allDiets?.map((diet, index) => {
-                    return <div key={index}>
-                        <label>{diet}</label>
-                        <input 
-                            type="checkbox" 
-                            value={diet} 
-                            checked={shouldBeChecked[diet]}
-                            onChange={handleDietChange} 
-                        />
-                    </div>
-                })
-            }
+            <div className={styles.checkboxContainer}>
+                {
+                    allDiets?.map((diet, index) => {
+                        return <div className={styles.singleCheckbox} key={index}>
+                            <input 
+                                type="checkbox" 
+                                value={diet} 
+                                checked={shouldBeChecked[diet]}
+                                onChange={handleDietChange} 
+                            />
+                            <label>{diet}</label>
+                        </div>
+                    })
+                }
+            </div>
             <button onClick={handleReset}>Reset filters</button>
         </div>
     )

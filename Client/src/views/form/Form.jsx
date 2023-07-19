@@ -20,37 +20,39 @@ function Form() {
 
     return (
         <div className={styles.container}>
-            <h1>Form</h1>
+            <h1>Create your own Recipe</h1>
 
             <form className={styles.form} onSubmit={submitHandler}>
-                <label>Recipe name</label>
-                <input type="text" name="title" value={recipe.title} onChange={recipeChangeHandler}/>
-                {errors.title && <p>{errors.title}</p>}
-                
+                <div className={styles.textInputs}>
+                    <label>Recipe name</label>
+                    <input type="text" name="title" value={recipe.title} onChange={recipeChangeHandler}/>
+                    {errors.title && <p>{errors.title}</p>}
+                    
 
-                <label>Summary</label>
-                <input type="text" name="summary" value={recipe.summary} onChange={recipeChangeHandler}/>
-                {errors.summary && <p>{errors.summary}</p>}
-                
-                <label>Health Score</label>
-                <input type="number" name="healthScore" value={recipe.healthScore} onChange={recipeChangeHandler}/>
-                {errors.healthScore && <p>{errors.healthScore}</p>}
-
-
-                {/* //* STEPS */}
-                <label>Instructions</label>
-                {
-                    Object.keys(currSteps)?.map((step, index) => {
-                        return <input key={index} type="text" value={currSteps[step]} name={step} onChange={stepsOnChange} />
-                    })
-                }
-                <button type="button" onClick={addSteps}>Add instruction</button>
-                {errors.steps && <p>{errors.steps}</p>}
+                    <label>Summary</label>
+                    <input type="text" name="summary" value={recipe.summary} onChange={recipeChangeHandler}/>
+                    {errors.summary && <p>{errors.summary}</p>}
+                    
+                    <label>Health Score</label>
+                    <input type="number" name="healthScore" value={recipe.healthScore} onChange={recipeChangeHandler}/>
+                    {errors.healthScore && <p>{errors.healthScore}</p>}
 
 
-                {/* //* IMAGE */}
-                <label>Image URL</label>
-                <input type="text" name="image" value={recipe.image} placeholder="insert URL"  onChange={recipeChangeHandler}/>
+                    {/* //* STEPS */}
+                    <label>Instructions</label>
+                    {
+                        Object.keys(currSteps)?.map((step, index) => {
+                            return <input key={index} type="text" value={currSteps[step]} name={step} onChange={stepsOnChange} />
+                        })
+                    }
+                    <button type="button" onClick={addSteps}>Add instruction</button>
+                    {errors.steps && <p>{errors.steps}</p>}
+
+
+                    {/* //* IMAGE */}
+                    <label>Image URL</label>
+                    <input type="text" name="image" value={recipe.image} placeholder="insert URL"  onChange={recipeChangeHandler}/>
+                </div>
 
                 
                 {/* //* DIETS */}
@@ -59,7 +61,7 @@ function Form() {
                         {
                             allDiets?.map((diet, index) => {
                                 return (
-                                    <div className={styles.dietContainer} key={index}>
+                                    <div className={styles.singleCheckbox} key={index}>
                                         <input 
                                             className={styles.checkbox}
                                             type="checkbox"
@@ -68,7 +70,7 @@ function Form() {
                                             checked={checkedDiets[diet]}
                                             onChange={dietChangeHandler}
                                          />
-                                        <label>{diet}</label>
+                                        <p>{diet}</p>
                                     </div>
                                 );
                             })

@@ -27,7 +27,6 @@ function Detail() {
 
     return (
         <div className={styles.container}>
-            <h1>Detail</h1>
             <Card id={idRecipe} recipe={recipe} detail={true} />
         </div>
     );

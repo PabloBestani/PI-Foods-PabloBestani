@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    /* border-bottom: 3px solid rgb(16, 119, 119); */
+    border-bottom: 3px solid rgba(110, 88, 68, 0.996);
+    background-color: rgba(219, 175, 137, 0.996);
+    justify-content: space-around;
+    padding: 10px 0;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+
+.container button {
+    box-sizing: border-box;
+    border: 2px solid #0a4758;
+    height: 35px;
+    width: 80px;
+    border-radius: 15px;
+  }

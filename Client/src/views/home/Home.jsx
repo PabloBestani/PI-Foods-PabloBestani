@@ -18,17 +18,20 @@ function Home() {
 
     return (
         <div className={styles.container}>
-            <h1>Home</h1>
-            <Pagination 
-                previousPage={previousPage}
-                nextPage={nextPage}
-                maxPages={maxPages}
-            />
-            <Order />
-            {
-                showFilters && <Filter />
-            }
-            <Grid visibleRecipes={visibleRecipes}/>
+            <div className={styles.sideBar}>
+                <Order />
+                {
+                    showFilters && <Filter />
+                }
+                <Pagination 
+                    previousPage={previousPage}
+                    nextPage={nextPage}
+                    maxPages={maxPages}
+                />
+            </div>
+            <div className={styles.gridContainer}>
+                <Grid visibleRecipes={visibleRecipes}/>
+            </div>
         </div>
     );
 };

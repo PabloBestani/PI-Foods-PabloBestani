@@ -1,0 +1,11 @@
+.container {
+
+}
+
+.container input {
+    box-sizing: border-box;
+    border: 1px solid #0a4758;
+    height: 23px;
+    width: 200px;
+    border-radius: 10px;
+}

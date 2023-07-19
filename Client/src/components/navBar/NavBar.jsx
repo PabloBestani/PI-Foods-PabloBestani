@@ -1,24 +1,28 @@
 import SearchBar from "../searchBar/SearchBar";
-import { Link, useLocation } from "react-router-dom";
-
+import { NavLink, useLocation } from "react-router-dom";
+import styles from './navBar.module.css'
 
 
 function NavBar() {
     const location = useLocation();
 
     return (
-        <div>
-            <h1>NavBar</h1>
-            <Link to={'/home'}>
-                <button>Home</button>
-            </Link>
-            <Link to={'/form'}>
-                <button>Create</button>
-            </Link>
-            <Link to={'/'}>
-                <button>Exit</button>
-            </Link>
+        <div className={styles.container}>
+            {location.pathname !== '/home' &&
+                <NavLink to={'/home'}>
+
+                    <button>Home</button>
+                </NavLink>
+            }
+            {location.pathname !== '/form' &&
+                <NavLink to={'/form'}>
+                    <button>Create</button>
+                </NavLink>
+            }
             {location.pathname === '/home' && <SearchBar />}
+            <NavLink to={'/'}>
+                <button>Exit</button>
+            </NavLink>
         </div>
     );
 };
