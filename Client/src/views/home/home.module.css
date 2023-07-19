@@ -5,19 +5,19 @@
 }
 
 .sideBar {
-    /* border: 3px solid rgb(16, 119, 119); */
-    /* border-radius: 20px; */
     position: relative;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
-    border-right: 3px solid rgba(110, 88, 68, 0.996);
+    box-shadow: 0 0 3px 1px rgba(110, 88, 68, 0.996);
     background-color: rgba(219, 175, 137, 0.996);
     gap: 10px;
     height: 90.6vh;
     bottom: 8px;
     width: 15%;
     padding-top: 25px;
+    z-index: 2;
+    position: relative;
+    bottom: 3px;
 }
 
 .gridContainer {

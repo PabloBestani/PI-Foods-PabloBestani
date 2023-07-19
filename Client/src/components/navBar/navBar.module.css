@@ -1,12 +1,12 @@
 .container {
     display: flex;
     /* border-bottom: 3px solid rgb(16, 119, 119); */
-    border-bottom: 3px solid rgba(110, 88, 68, 0.996);
+    /* border-bottom: 3px solid rgba(110, 88, 68, 0.996); */
+    box-shadow: 0 0 3px 1px rgba(110, 88, 68, 0.996);
     background-color: rgba(219, 175, 137, 0.996);
     justify-content: space-around;
     padding: 10px 0;
     margin-bottom: 5px;
-    z-index: 1;
 }
 
 .container button {
