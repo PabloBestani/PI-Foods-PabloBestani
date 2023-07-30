@@ -12,7 +12,7 @@ export default function usePaginate (gridContent) {
     const [visibleRecipes, setVisibleRecipes] = useState([]);
     const [maxPages, setMaxPages] = useState(1);
 
-
+    
     useEffect(() => {
         setStartIndex((page - 1) * gridContent);
         setEndIndex(page * gridContent);
