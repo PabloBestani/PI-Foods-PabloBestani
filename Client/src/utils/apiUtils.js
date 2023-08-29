@@ -1,6 +1,7 @@
 import axios from 'axios';
-require("dotenv").config();
-axios.defaults.url = process.env.URL_BASE
+URL_BASE='https://pi-foods-pablobestani.onrender.com/'
+axios.defaults.url = URL_BASE
+
 
 export async function getAllRecipes() {
     const endpoint = '/recipes';
