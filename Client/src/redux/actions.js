@@ -85,7 +85,7 @@ export function resetPage() {
 export function orderRecipes(order) {
     return {
         type: ORDER_RECIPES,
-        payload: order
+        payload: order 
     };
 };
 

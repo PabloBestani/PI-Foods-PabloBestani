@@ -9,7 +9,7 @@ const formatRecipesApi = (recipes) => {
 
         // Chequeo que ninguna de las propiedades importantes sea undefined
         for (prop of propertiesToCheck) {
-            if (recipe[prop] === undefined) throw Error (`Controller failed to get recipe ${prop}`);
+            if (recipe[prop] === undefined) console.log(`Controller failed to get recipe ${prop}`);
         }
 
         //Desestructuro las propiedades elegidas
