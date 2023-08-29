@@ -1,5 +1,5 @@
 import axios from 'axios';
-URL_BASE='https://pi-foods-pablobestani.onrender.com/'
+const URL_BASE='https://pi-foods-pablobestani.onrender.com/'
 axios.defaults.url = URL_BASE
 
 
